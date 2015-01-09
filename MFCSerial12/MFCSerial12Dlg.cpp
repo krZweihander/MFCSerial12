@@ -270,7 +270,9 @@ LRESULT CMFCSerial12Dlg::OnSerialMsg (WPARAM wParam, LPARAM /*lParam*/)
 
 			for (DWORD dwChar=0; dwChar<dwRead; dwChar++)
 			{
-				szString += szData[dwChar];
+				CString in;
+				in.Format(_T("%c"), szData[dwChar]);
+				szString += in;
 				if(szData[dwChar] == '\r')
 					szString += '\n';
 			}
@@ -283,9 +285,12 @@ LRESULT CMFCSerial12Dlg::OnSerialMsg (WPARAM wParam, LPARAM /*lParam*/)
 
 void CMFCSerial12Dlg::process(CString instr)
 {
+	instr.TrimLeft();
+	instr.TrimRight();
 	m_sReadstack += instr;
+
 	CString parser = _T("*;");
-	
+
 	if (m_sReadstack.Find(parser) != -1)
 	{
 		CString nowreading;
@@ -468,4 +473,3 @@ void CMFCSerial12Dlg::OnEnKillfocustxttx()
 {
 	m_btxtTxFocused = false;
 }
-

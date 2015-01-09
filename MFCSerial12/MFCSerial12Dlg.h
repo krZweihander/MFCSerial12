@@ -41,6 +41,7 @@ protected:
 	afx_msg LRESULT OnSerialMsg (WPARAM wParam, LPARAM /*lParam*/);
 	afx_msg BOOL PreTranslateMessage(MSG* pMsg);
 	void initial(void);
+	void autoPortOpen(void);
 	void process(CString instr);
 	void done(CString* hdata, int length);
 	void send(CString str);
@@ -48,6 +49,7 @@ protected:
 	int getCS(int* idata);
 	CString hex(int i);
 	int dex(CString hexStr);
+	void Log(CString str, bool ln);
 
 	int m_nPort;
 	CSerial::EBaudrate m_eBaudrate;
@@ -59,5 +61,4 @@ protected:
 	int m_nlstTxSelectedRow;
 	CString m_sReadstack;
 	bool m_btxtTxFocused;
-	void autoPortOpen(void);
 };

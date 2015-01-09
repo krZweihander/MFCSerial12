@@ -83,8 +83,8 @@ EXSTYLE WS_EX_APPWINDOW
 CAPTION "MFCSerial12"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Port Open",IDC_btnPortOpen,7,7,50,14
-    PUSHBUTTON      "Port Close",IDC_btnPortClose,61,7,50,14,WS_DISABLED
+    PUSHBUTTON      "Port Open",IDC_btnPortOpen,45,7,50,14
+    PUSHBUTTON      "Port Close",IDC_btnPortClose,99,7,50,14,WS_DISABLED
     CONTROL         "",IDC_lstRx,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,21,41,364,68
     CONTROL         "",IDC_lstTx,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,21,131,364,68
     LTEXT           "Rx",IDC_lblRx,21,29,8,8
@@ -93,6 +93,7 @@ BEGIN
     COMBOBOX        IDC_cmbTx,21,206,18,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_txtTx,257,209,40,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Input",IDC_btnTxInput,302,209,37,14
+    COMBOBOX        IDC_cmbPort,7,8,34,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
 
@@ -172,6 +173,24 @@ BEGIN
 0x0034, 
     IDC_cmbTx, 0x403, 2, 0
 0x0035, 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x314d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x324d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x334d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x344d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x354d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x364d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x374d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x384d, "\000" 
+    IDC_cmbPort, 0x403, 5, 0
+0x4f43, 0x394d, "\000" 
     0
 END
 

@@ -44,6 +44,8 @@ protected:
 	void process(CString instr);
 	void done(CString* hdata, int length);
 	void send(CString str);
+	CString sendformat(int* idata);
+	int getCS(int* idata);
 	CString hex(int i);
 	int dex(CString hexStr);
 
@@ -52,12 +54,10 @@ protected:
 	CSerialMFC m_Serial;
 	CListCtrl m_lstRx;
 	CListCtrl m_lstTx;
-	CComboBox m_cmbTx;
 	CEdit m_txtTx;
 	int m_nlstTxSelectedCol;
 	int m_nlstTxSelectedRow;
 	CString m_sReadstack;
-	CString sendformat(int* idata);
-	int getCS(int* idata);
 	bool m_btxtTxFocused;
+	void autoPortOpen(void);
 };

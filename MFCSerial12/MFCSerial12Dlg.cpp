@@ -31,7 +31,6 @@ void CMFCSerial12Dlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_lstRx, m_lstRx);
 	DDX_Control(pDX, IDC_lstTx, m_lstTx);
-	DDX_Control(pDX, IDC_cmbTx, m_cmbTx);
 	DDX_Control(pDX, IDC_txtTx, m_txtTx);
 }
 
@@ -218,7 +217,37 @@ void CMFCSerial12Dlg::initial(void)
 		}
 	}
 	
-	m_cmbTx.SendMessage(CB_SETCURSEL, 0, 0);
+	GetDlgItem(IDC_cmbTx)->SendMessage(CB_SETCURSEL, 0, 0);
+	GetDlgItem(IDC_cmbPort)->SendMessage(CB_SETCURSEL, 0, 0);
+
+	autoPortOpen();
+}
+
+void CMFCSerial12Dlg::autoPortOpen(void)
+{
+	for (int i = 1; i <= 10; i++)
+	{
+		CString szPort = _T("");
+		GetDlgItemText(IDC_cmbPort, szPort);
+		if (m_Serial.Open(szPort,this) == ERROR_SUCCESS)
+		{
+			m_Serial.Setup(m_eBaudrate,
+			CSerial::EData8,
+			CSerial::EParNone,
+			CSerial::EStop1);
+			
+			m_Serial.SetupHandshaking(CSerial::EHandshakeOff);
+
+			GetDlgItem(IDC_btnPortOpen)->EnableWindow(false);
+			GetDlgItem(IDC_btnPortClose)->EnableWindow(true);
+
+			return;
+		}
+		if (i == 10) break;
+		GetDlgItem(IDC_cmbPort)->SendMessage(CB_SETCURSEL, i, 0);
+	}
+	AfxMessageBox(_T("열 수 있는 포트가 없습니다"),MB_ICONSTOP|MB_OK);
+	GetDlgItem(IDC_cmbPort)->SendMessage(CB_SETCURSEL, 0, 0);
 }
 
 LRESULT CMFCSerial12Dlg::OnSerialMsg (WPARAM wParam, LPARAM /*lParam*/)
@@ -332,12 +361,12 @@ void CMFCSerial12Dlg::send(CString str)
 
 void CMFCSerial12Dlg::OnBnClickedbtnportopen()
 {
-	CString szPort;
-	szPort.Format(_T("COM%d"), m_nPort);
+	CString szPort = _T("");
+	GetDlgItemText(IDC_cmbPort, szPort);
 	if (m_Serial.Open(szPort,this) != ERROR_SUCCESS)
 	{
 		szPort += _T(" 포트를 열 수 없습니다.");
-		AfxMessageBox((LPCTSTR)szPort,MB_ICONSTOP|MB_OK);
+		AfxMessageBox(szPort,MB_ICONSTOP|MB_OK);
 		return;
 	}
 
@@ -439,3 +468,4 @@ void CMFCSerial12Dlg::OnEnKillfocustxttx()
 {
 	m_btxtTxFocused = false;
 }
+

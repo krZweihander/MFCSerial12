@@ -73,3 +73,16 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+MFCSerial12.ncb
+Debug/MFCSerial12.ilk
+Debug/MFCSerial12.pdb
+MFCSerial12/Debug/BuildLog.htm
+MFCSerial12/Debug/MFCSerial12.exe.embed.manifest
+MFCSerial12/Debug/MFCSerial12.exe.embed.manifest.res
+MFCSerial12/Debug/MFCSerial12.exe.intermediate.manifest
+MFCSerial12/Debug/MFCSerial12.res
+MFCSerial12/Debug/mt.dep
+MFCSerial12/Debug/RCa01128
+MFCSerial12/Debug/vc90.idb
+MFCSerial12/Debug/vc90.pdb
+MFCSerial12/MFCSerial12.aps
